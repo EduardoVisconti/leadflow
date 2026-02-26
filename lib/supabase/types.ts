@@ -51,6 +51,9 @@ export interface Database {
           role: string | null
           avatar_url: string | null
           notes: string | null
+          channel: string | null
+          instagram_handle: string | null
+          whatsapp: string | null
           created_at: string
         }
         Insert: {
@@ -64,6 +67,9 @@ export interface Database {
           role?: string | null
           avatar_url?: string | null
           notes?: string | null
+          channel?: string | null
+          instagram_handle?: string | null
+          whatsapp?: string | null
           created_at?: string
         }
         Update: {
@@ -77,6 +83,9 @@ export interface Database {
           role?: string | null
           avatar_url?: string | null
           notes?: string | null
+          channel?: string | null
+          instagram_handle?: string | null
+          whatsapp?: string | null
           created_at?: string
         }
         Relationships: []
@@ -119,6 +128,8 @@ export interface Database {
           expected_close_date: string | null
           position: number
           notes: string | null
+          source: string | null
+          product_id: string | null
           created_at: string
           updated_at: string
         }
@@ -135,6 +146,8 @@ export interface Database {
           expected_close_date?: string | null
           position?: number
           notes?: string | null
+          source?: string | null
+          product_id?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -151,6 +164,8 @@ export interface Database {
           expected_close_date?: string | null
           position?: number
           notes?: string | null
+          source?: string | null
+          product_id?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -191,6 +206,87 @@ export interface Database {
           body?: string | null
           due_date?: string | null
           done?: boolean
+          created_at?: string
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          id: string
+          user_id: string
+          name: string
+          brand: string | null
+          category: string | null
+          price: number | null
+          stock: number
+          description: string | null
+          sku: string | null
+          active: boolean
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          name: string
+          brand?: string | null
+          category?: string | null
+          price?: number | null
+          stock?: number
+          description?: string | null
+          sku?: string | null
+          active?: boolean
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          name?: string
+          brand?: string | null
+          category?: string | null
+          price?: number | null
+          stock?: number
+          description?: string | null
+          sku?: string | null
+          active?: boolean
+          created_at?: string
+        }
+        Relationships: []
+      }
+      tasks: {
+        Row: {
+          id: string
+          user_id: string
+          deal_id: string | null
+          contact_id: string | null
+          title: string
+          description: string | null
+          due_date: string | null
+          done: boolean
+          priority: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          deal_id?: string | null
+          contact_id?: string | null
+          title: string
+          description?: string | null
+          due_date?: string | null
+          done?: boolean
+          priority?: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          deal_id?: string | null
+          contact_id?: string | null
+          title?: string
+          description?: string | null
+          due_date?: string | null
+          done?: boolean
+          priority?: string
           created_at?: string
         }
         Relationships: []
