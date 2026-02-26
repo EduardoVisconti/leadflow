@@ -12,7 +12,7 @@ export function useDeals() {
     queryFn: async (): Promise<DealWithRelations[]> => {
       const { data, error } = await supabase
         .from("deals")
-        .select(`*, contact:contacts(*), company:companies(*), stage:pipeline_stages(*)`)
+        .select(`*, contact:contacts(*), company:companies(*), stage:pipeline_stages(*), product:products(*)`)
         .order("created_at", { ascending: false })
 
       if (error) throw error
@@ -29,7 +29,7 @@ export function useDeal(id: string) {
     queryFn: async (): Promise<DealWithRelations> => {
       const { data, error } = await supabase
         .from("deals")
-        .select(`*, contact:contacts(*), company:companies(*), stage:pipeline_stages(*)`)
+        .select(`*, contact:contacts(*), company:companies(*), stage:pipeline_stages(*), product:products(*)`)
         .eq("id", id)
         .single()
 

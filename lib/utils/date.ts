@@ -12,7 +12,11 @@ export function isOverdue(date: string | null): boolean {
 
 export function formatDate(date: string | null): string {
   if (!date) return "-"
-  return format(parseISO(date), "dd/MM/yyyy")
+  return format(parseISO(date), "dd 'de' MMM 'de' yyyy", { locale: ptBR })
+}
+
+export function formatRelativeDate(date: string | Date): string {
+  return formatDistanceToNow(new Date(date), { addSuffix: true, locale: ptBR })
 }
 
 export function daysSince(date: string): number {

@@ -19,7 +19,7 @@ export function usePipeline() {
 
       const { data: deals, error: dealsError } = await supabase
         .from("deals")
-        .select(`*, contact:contacts(*), company:companies(*)`)
+        .select(`*, contact:contacts(*), company:companies(*), product:products(*)`)
         .order("position")
 
       if (dealsError) throw dealsError

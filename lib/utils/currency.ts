@@ -1,6 +1,6 @@
-export function formatCurrency(value: number | null, currency = "USD"): string {
+export function formatCurrency(value: number | null, currency = "BRL"): string {
   if (value === null || value === undefined) return "-"
-  return new Intl.NumberFormat("en-US", {
+  return new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency,
     minimumFractionDigits: 0,

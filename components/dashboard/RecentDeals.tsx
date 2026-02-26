@@ -17,7 +17,7 @@ export function RecentDeals() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Recent Deals</CardTitle>
+          <CardTitle>Deals Recentes</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           {Array.from({ length: 5 }).map((_, i) => (
@@ -31,12 +31,12 @@ export function RecentDeals() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Recent Deals</CardTitle>
+        <CardTitle>Deals Recentes</CardTitle>
       </CardHeader>
       <CardContent>
         {!deals?.length ? (
           <p className="text-sm text-muted-foreground text-center py-8">
-            No deals yet. Create your first deal in the Pipeline.
+            Nenhum deal ainda. Crie seu primeiro deal no Pipeline.
           </p>
         ) : (
           <div className="space-y-4">

@@ -2,12 +2,20 @@
 
 import { useSortable } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
-import { GripVertical, Calendar, User } from "lucide-react"
+import { GripVertical, Calendar, User, Package, MessageCircle, Instagram, Users, Globe, HelpCircle, AlertTriangle } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { formatCurrency } from "@/lib/utils/currency"
-import { isOverdue, formatDate } from "@/lib/utils/date"
+import { isOverdue, formatDate, daysSince } from "@/lib/utils/date"
 import { PRIORITY_CONFIG } from "@/lib/constants/pipeline"
-import type { DealWithRelations, DealPriority } from "@/types"
+import type { DealWithRelations, DealPriority, DealSource } from "@/types"
+
+const SOURCE_ICONS: Record<string, typeof MessageCircle> = {
+  whatsapp: MessageCircle,
+  instagram: Instagram,
+  indicacao: Users,
+  site: Globe,
+  outro: HelpCircle,
+}
 
 interface DealCardProps {
   deal: DealWithRelations
@@ -31,6 +39,8 @@ export function DealCard({ deal, onClick }: DealCardProps) {
 
   const priority = PRIORITY_CONFIG[deal.priority as DealPriority]
   const overdue = isOverdue(deal.expected_close_date)
+  const daysWithoutActivity = daysSince(deal.updated_at)
+  const SourceIcon = deal.source ? SOURCE_ICONS[deal.source] : null
 
   return (
     <div
@@ -50,10 +60,21 @@ export function DealCard({ deal, onClick }: DealCardProps) {
           <GripVertical className="h-4 w-4" />
         </button>
         <div className="flex-1 min-w-0">
-          <p className="font-medium text-sm truncate">{deal.title}</p>
+          <div className="flex items-center gap-1.5">
+            <p className="font-medium text-sm truncate flex-1">{deal.title}</p>
+            {SourceIcon && (
+              <SourceIcon className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+            )}
+          </div>
           {deal.value !== null && (
             <p className="text-sm font-semibold text-primary mt-1">
               {formatCurrency(deal.value, deal.currency)}
+            </p>
+          )}
+          {deal.product && (
+            <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1 truncate">
+              <Package className="h-3 w-3 shrink-0" />
+              {deal.product.name}
             </p>
           )}
           <div className="flex items-center gap-2 mt-2 flex-wrap">
@@ -64,7 +85,13 @@ export function DealCard({ deal, onClick }: DealCardProps) {
             )}
             {overdue && (
               <Badge variant="destructive" className="text-[10px] px-1.5 py-0">
-                Overdue
+                Atrasado
+              </Badge>
+            )}
+            {daysWithoutActivity > 7 && (
+              <Badge variant="outline" className="text-[10px] px-1.5 py-0 text-orange-600 border-orange-300">
+                <AlertTriangle className="h-2.5 w-2.5 mr-0.5" />
+                {daysWithoutActivity}d sem contato
               </Badge>
             )}
           </div>

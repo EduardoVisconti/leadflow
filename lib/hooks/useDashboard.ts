@@ -35,7 +35,7 @@ export function useRecentDeals() {
     queryFn: async (): Promise<DealWithRelations[]> => {
       const { data, error } = await supabase
         .from("deals")
-        .select(`*, contact:contacts(*), company:companies(*), stage:pipeline_stages(*)`)
+        .select(`*, contact:contacts(*), company:companies(*), stage:pipeline_stages(*), product:products(*)`)
         .order("created_at", { ascending: false })
         .limit(5)
 

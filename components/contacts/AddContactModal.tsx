@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { contactSchema, type ContactFormValues } from "@/lib/validations/contact.schema"
@@ -50,8 +51,41 @@ export function AddContactModal({ open, onClose, contact }: AddContactModalProps
       role: contact?.role ?? "",
       company_id: contact?.company_id ?? null,
       notes: contact?.notes ?? "",
+      channel: (contact?.channel as ContactFormValues["channel"]) ?? null,
+      instagram_handle: contact?.instagram_handle ?? "",
+      whatsapp: contact?.whatsapp ?? "",
     },
   })
+
+  useEffect(() => {
+    if (contact) {
+      form.reset({
+        first_name: contact.first_name ?? "",
+        last_name: contact.last_name ?? "",
+        email: contact.email ?? "",
+        phone: contact.phone ?? "",
+        role: contact.role ?? "",
+        company_id: contact.company_id ?? null,
+        notes: contact.notes ?? "",
+        channel: (contact.channel as ContactFormValues["channel"]) ?? null,
+        instagram_handle: contact.instagram_handle ?? "",
+        whatsapp: contact.whatsapp ?? "",
+      })
+    } else {
+      form.reset({
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone: "",
+        role: "",
+        company_id: null,
+        notes: "",
+        channel: null,
+        instagram_handle: "",
+        whatsapp: "",
+      })
+    }
+  }, [contact, form])
 
   const loading = createContact.isPending || updateContact.isPending
 
@@ -59,15 +93,15 @@ export function AddContactModal({ open, onClose, contact }: AddContactModalProps
     try {
       if (isEditing && contact) {
         await updateContact.mutateAsync({ id: contact.id, ...values })
-        toast({ title: "Contact updated" })
+        toast({ title: "Contato atualizado" })
       } else {
         await createContact.mutateAsync(values)
-        toast({ title: "Contact created" })
+        toast({ title: "Contato criado" })
       }
       form.reset()
       onClose()
     } catch {
-      toast({ title: "Error saving contact", variant: "destructive" })
+      toast({ title: "Erro ao salvar contato", variant: "destructive" })
     }
   }
 
@@ -75,22 +109,22 @@ export function AddContactModal({ open, onClose, contact }: AddContactModalProps
     <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>{isEditing ? "Edit Contact" : "New Contact"}</DialogTitle>
+          <DialogTitle>{isEditing ? "Editar Contato" : "Novo Contato"}</DialogTitle>
           <DialogDescription>
-            {isEditing ? "Update the contact details below." : "Add a new contact to your CRM."}
+            {isEditing ? "Atualize os detalhes do contato abaixo." : "Adicione um novo contato ao seu CRM."}
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="first_name">First Name *</Label>
+              <Label htmlFor="first_name">Nome *</Label>
               <Input id="first_name" {...form.register("first_name")} />
               {form.formState.errors.first_name && (
                 <p className="text-xs text-destructive">{form.formState.errors.first_name.message}</p>
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="last_name">Last Name *</Label>
+              <Label htmlFor="last_name">Sobrenome *</Label>
               <Input id="last_name" {...form.register("last_name")} />
               {form.formState.errors.last_name && (
                 <p className="text-xs text-destructive">{form.formState.errors.last_name.message}</p>
@@ -100,31 +134,60 @@ export function AddContactModal({ open, onClose, contact }: AddContactModalProps
 
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" {...form.register("email")} placeholder="email@example.com" />
+            <Input id="email" type="email" {...form.register("email")} placeholder="email@exemplo.com" />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="phone">Phone</Label>
-              <Input id="phone" {...form.register("phone")} placeholder="+1 555 0123" />
+              <Label htmlFor="phone">Telefone</Label>
+              <Input id="phone" {...form.register("phone")} placeholder="(11) 99999-0000" />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="role">Role</Label>
-              <Input id="role" {...form.register("role")} placeholder="e.g. CEO" />
+              <Label htmlFor="role">Cargo</Label>
+              <Input id="role" {...form.register("role")} placeholder="Ex: Gerente" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-3 gap-4">
+            <div className="space-y-2">
+              <Label>Canal Preferido</Label>
+              <Select
+                value={form.watch("channel") ?? "none"}
+                onValueChange={(v) => form.setValue("channel", v === "none" ? null : v as "whatsapp" | "instagram" | "telefone" | "email")}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Selecionar canal" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="none">Nenhum</SelectItem>
+                  <SelectItem value="whatsapp">WhatsApp</SelectItem>
+                  <SelectItem value="instagram">Instagram</SelectItem>
+                  <SelectItem value="telefone">Telefone</SelectItem>
+                  <SelectItem value="email">Email</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="whatsapp">WhatsApp</Label>
+              <Input id="whatsapp" {...form.register("whatsapp")} placeholder="(11) 99999-0000" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="instagram_handle">Instagram</Label>
+              <Input id="instagram_handle" {...form.register("instagram_handle")} placeholder="@usuario" />
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label>Company</Label>
+            <Label>Empresa</Label>
             <Select
               value={form.watch("company_id") ?? "none"}
               onValueChange={(v) => form.setValue("company_id", v === "none" ? null : v)}
             >
               <SelectTrigger>
-                <SelectValue placeholder="Select a company" />
+                <SelectValue placeholder="Selecionar empresa" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="none">No company</SelectItem>
+                <SelectItem value="none">Sem empresa</SelectItem>
                 {companies?.map((company) => (
                   <SelectItem key={company.id} value={company.id}>
                     {company.name}
@@ -135,17 +198,17 @@ export function AddContactModal({ open, onClose, contact }: AddContactModalProps
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="notes">Notes</Label>
+            <Label htmlFor="notes">Observações</Label>
             <Textarea id="notes" {...form.register("notes")} rows={3} />
           </div>
 
           <div className="flex justify-end gap-2 pt-2">
             <Button type="button" variant="outline" onClick={onClose}>
-              Cancel
+              Cancelar
             </Button>
             <Button type="submit" disabled={loading}>
               {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {isEditing ? "Update" : "Create"}
+              {isEditing ? "Atualizar" : "Criar"}
             </Button>
           </div>
         </form>
