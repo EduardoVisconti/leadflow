@@ -41,11 +41,11 @@ export function TopBar({ userEmail }: TopBarProps) {
         <SheetTrigger asChild>
           <Button variant="ghost" size="icon" className="lg:hidden">
             <Menu className="h-5 w-5" />
-            <span className="sr-only">Toggle menu</span>
+            <span className="sr-only">Alternar menu</span>
           </Button>
         </SheetTrigger>
         <SheetContent side="left" className="w-64 p-0 bg-slate-900">
-          <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+          <SheetTitle className="sr-only">Menu de Navegação</SheetTitle>
           <MobileSidebar />
         </SheetContent>
       </Sheet>
@@ -75,13 +75,13 @@ export function TopBar({ userEmail }: TopBarProps) {
           <DropdownMenuItem asChild>
             <a href="/settings" className="cursor-pointer">
               <User className="mr-2 h-4 w-4" />
-              Settings
+              Configurações
             </a>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-destructive">
             <LogOut className="mr-2 h-4 w-4" />
-            Logout
+            Sair
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

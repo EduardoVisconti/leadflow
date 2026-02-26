@@ -54,16 +54,16 @@ export function GlobalSearch() {
         onClick={() => setOpen(true)}
       >
         <Search className="h-4 w-4 xl:mr-2" />
-        <span className="hidden xl:inline-flex text-muted-foreground">Search...</span>
+        <span className="hidden xl:inline-flex text-muted-foreground">Buscar...</span>
         <kbd className="pointer-events-none absolute right-1.5 top-[50%] -translate-y-[50%] hidden xl:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100">
           <span className="text-xs">Ctrl</span>K
         </kbd>
       </Button>
 
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Search contacts, deals, companies..." />
+        <CommandInput placeholder="Buscar contatos, deals, empresas..." />
         <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandEmpty>Nenhum resultado encontrado.</CommandEmpty>
 
           {deals && deals.length > 0 && (
             <CommandGroup heading="Deals">
@@ -86,7 +86,7 @@ export function GlobalSearch() {
           )}
 
           {contacts && contacts.length > 0 && (
-            <CommandGroup heading="Contacts">
+            <CommandGroup heading="Contatos">
               {contacts.slice(0, 5).map((contact) => (
                 <CommandItem
                   key={contact.id}
@@ -108,7 +108,7 @@ export function GlobalSearch() {
           )}
 
           {companies && companies.length > 0 && (
-            <CommandGroup heading="Companies">
+            <CommandGroup heading="Empresas">
               {companies.slice(0, 5).map((company) => (
                 <CommandItem
                   key={company.id}
