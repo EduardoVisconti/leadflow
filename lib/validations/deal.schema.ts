@@ -5,7 +5,7 @@ export const dealSchema = z.object({
   value: z.coerce.number().min(0).nullable().optional(),
   currency: z.string().optional(),
   priority: z.enum(["low", "medium", "high"]).optional(),
-  expected_close_date: z.string().nullable().optional(),
+  expected_close_date: z.string().nullable().optional().transform(v => v === "" ? null : v),
   contact_id: z.string().uuid().nullable().optional(),
   company_id: z.string().uuid().nullable().optional(),
   stage_id: z.string().uuid().nullable().optional(),
