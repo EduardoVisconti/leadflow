@@ -7,6 +7,7 @@ import { dealSchema, type DealFormValues } from "@/lib/validations/deal.schema"
 import { useCreateDeal, useUpdateDeal } from "@/lib/hooks/useDeals"
 import { useContacts } from "@/lib/hooks/useContacts"
 import { useProducts } from "@/lib/hooks/useProducts"
+import { usePipeline } from "@/lib/hooks/usePipeline"
 import { useToast } from "@/components/ui/use-toast"
 import {
   Dialog,
@@ -50,8 +51,11 @@ export function AddDealModal({ open, onClose, stageId, deal }: AddDealModalProps
   const updateDeal = useUpdateDeal()
   const { data: contacts } = useContacts()
   const { data: products } = useProducts()
+  const { data: stages } = usePipeline()
   const { toast } = useToast()
   const isEditing = !!deal
+
+  const firstStageId = stages?.[0]?.id ?? null
 
   const activeProducts = products?.filter((p) => p.active)
 
@@ -64,7 +68,7 @@ export function AddDealModal({ open, onClose, stageId, deal }: AddDealModalProps
       priority: (deal?.priority as DealFormValues["priority"]) ?? "medium",
       expected_close_date: deal?.expected_close_date ?? null,
       contact_id: deal?.contact_id ?? null,
-      stage_id: deal?.stage_id ?? stageId ?? null,
+      stage_id: deal?.stage_id ?? stageId ?? firstStageId,
       notes: deal?.notes ?? null,
       source: (deal?.source as DealFormValues["source"]) ?? "whatsapp",
       product_id: deal?.product_id ?? null,
@@ -80,7 +84,7 @@ export function AddDealModal({ open, onClose, stageId, deal }: AddDealModalProps
         priority: (deal.priority as DealFormValues["priority"]) ?? "medium",
         expected_close_date: deal.expected_close_date ?? null,
         contact_id: deal.contact_id ?? null,
-        stage_id: deal.stage_id ?? stageId ?? null,
+        stage_id: deal.stage_id ?? stageId ?? firstStageId,
         notes: deal.notes ?? null,
         source: (deal.source as DealFormValues["source"]) ?? "whatsapp",
         product_id: deal.product_id ?? null,
@@ -93,23 +97,27 @@ export function AddDealModal({ open, onClose, stageId, deal }: AddDealModalProps
         priority: "medium",
         expected_close_date: null,
         contact_id: null,
-        stage_id: stageId ?? null,
+        stage_id: stageId ?? firstStageId,
         notes: null,
         source: "whatsapp",
         product_id: null,
       })
     }
-  }, [deal, stageId, form])
+  }, [deal, stageId, firstStageId, form])
 
   const loading = createDeal.isPending || updateDeal.isPending
 
   async function onSubmit(values: DealFormValues) {
     try {
+      const payload = {
+        ...values,
+        expected_close_date: values.expected_close_date || null,
+      }
       if (isEditing && deal) {
-        await updateDeal.mutateAsync({ id: deal.id, ...values })
+        await updateDeal.mutateAsync({ id: deal.id, ...payload })
         toast({ title: "Deal atualizado" })
       } else {
-        await createDeal.mutateAsync(values)
+        await createDeal.mutateAsync(payload)
         toast({ title: "Deal criado" })
       }
       form.reset()
@@ -135,6 +143,31 @@ export function AddDealModal({ open, onClose, stageId, deal }: AddDealModalProps
             {form.formState.errors.title && (
               <p className="text-xs text-destructive">{form.formState.errors.title.message}</p>
             )}
+          </div>
+
+          <div className="space-y-2">
+            <Label>Estágio *</Label>
+            <Select
+              value={form.watch("stage_id") ?? firstStageId ?? ""}
+              onValueChange={(v) => form.setValue("stage_id", v)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Selecionar estágio" />
+              </SelectTrigger>
+              <SelectContent>
+                {stages?.map((stage) => (
+                  <SelectItem key={stage.id} value={stage.id}>
+                    <div className="flex items-center gap-2">
+                      <div
+                        className="h-2.5 w-2.5 rounded-full shrink-0"
+                        style={{ backgroundColor: stage.color }}
+                      />
+                      {stage.name}
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
