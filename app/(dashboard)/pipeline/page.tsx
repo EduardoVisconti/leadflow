@@ -26,11 +26,11 @@ export default function PipelinePage() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Pipeline</h1>
-          <p className="text-muted-foreground">Drag deals between stages to update their progress.</p>
+          <p className="text-muted-foreground">Arraste os deals entre os estágios para atualizar o progresso.</p>
         </div>
         <Button onClick={() => setModalOpen(true)}>
           <Plus className="mr-2 h-4 w-4" />
-          New Deal
+          Novo Deal
         </Button>
       </div>
 

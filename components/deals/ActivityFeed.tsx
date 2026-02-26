@@ -69,16 +69,16 @@ export function ActivityFeed({ dealId }: ActivityFeedProps) {
       setTitle("")
       setBody("")
       setShowForm(false)
-      toast({ title: "Activity logged" })
+      toast({ title: "Atividade registrada" })
     } catch {
-      toast({ title: "Error logging activity", variant: "destructive" })
+      toast({ title: "Erro ao registrar atividade", variant: "destructive" })
     }
   }
 
   if (isLoading) {
     return (
       <Card>
-        <CardHeader><CardTitle>Activity</CardTitle></CardHeader>
+        <CardHeader><CardTitle>Atividades</CardTitle></CardHeader>
         <CardContent className="space-y-3">
           {Array.from({ length: 3 }).map((_, i) => (
             <Skeleton key={i} className="h-16 w-full" />
@@ -91,10 +91,10 @@ export function ActivityFeed({ dealId }: ActivityFeedProps) {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="text-base">Activity</CardTitle>
+        <CardTitle className="text-base">Atividades</CardTitle>
         <Button size="sm" variant="outline" onClick={() => setShowForm(!showForm)}>
           <Plus className="mr-1 h-3 w-3" />
-          Log Activity
+          Registrar Atividade
         </Button>
       </CardHeader>
       <CardContent>
@@ -112,24 +112,24 @@ export function ActivityFeed({ dealId }: ActivityFeedProps) {
                 </SelectContent>
               </Select>
               <Input
-                placeholder="Title"
+                placeholder="Título"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
               />
             </div>
             <Textarea
-              placeholder="Details (optional)"
+              placeholder="Detalhes (opcional)"
               value={body}
               onChange={(e) => setBody(e.target.value)}
               rows={2}
             />
             <div className="flex justify-end gap-2">
               <Button type="button" variant="ghost" size="sm" onClick={() => setShowForm(false)}>
-                Cancel
+                Cancelar
               </Button>
               <Button type="submit" size="sm" disabled={createActivity.isPending}>
-                Save
+                Salvar
               </Button>
             </div>
           </form>
@@ -137,7 +137,7 @@ export function ActivityFeed({ dealId }: ActivityFeedProps) {
 
         {!activities?.length ? (
           <p className="text-sm text-muted-foreground text-center py-6">
-            No activities logged yet.
+            Nenhuma atividade registrada.
           </p>
         ) : (
           <div className="space-y-1">

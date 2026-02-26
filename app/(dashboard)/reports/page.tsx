@@ -40,8 +40,8 @@ export default function ReportsPage() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight">Reports</h1>
-        <p className="text-muted-foreground">Analytics and insights for your pipeline.</p>
+        <h1 className="text-2xl font-bold tracking-tight">Relatórios</h1>
+        <p className="text-muted-foreground">Análises e insights do seu pipeline.</p>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
@@ -51,11 +51,11 @@ export default function ReportsPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Top Open Deals</CardTitle>
+            <CardTitle className="text-base">Maiores Deals em Aberto</CardTitle>
           </CardHeader>
           <CardContent>
             {!openDeals?.length ? (
-              <p className="text-sm text-muted-foreground text-center py-6">No open deals.</p>
+              <p className="text-sm text-muted-foreground text-center py-6">Nenhum deal em aberto.</p>
             ) : (
               <div className="space-y-3">
                 {openDeals.map((deal, i) => (

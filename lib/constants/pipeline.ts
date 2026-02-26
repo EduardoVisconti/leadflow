@@ -8,15 +8,15 @@ export const DEFAULT_STAGES = [
 ] as const
 
 export const PRIORITY_CONFIG = {
-  low: { label: "Low", color: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300" },
-  medium: { label: "Medium", color: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300" },
-  high: { label: "High", color: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300" },
+  low: { label: "Baixa", color: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300" },
+  medium: { label: "Média", color: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300" },
+  high: { label: "Alta", color: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300" },
 } as const
 
 export const ACTIVITY_TYPES = {
-  note: { label: "Note", icon: "FileText" },
-  call: { label: "Call", icon: "Phone" },
+  note: { label: "Nota", icon: "FileText" },
+  call: { label: "Ligação", icon: "Phone" },
   email: { label: "Email", icon: "Mail" },
-  meeting: { label: "Meeting", icon: "Calendar" },
-  task: { label: "Task", icon: "CheckSquare" },
+  meeting: { label: "Reunião", icon: "Calendar" },
+  task: { label: "Tarefa", icon: "CheckSquare" },
 } as const

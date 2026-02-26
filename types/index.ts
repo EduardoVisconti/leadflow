@@ -19,14 +19,24 @@ export type Activity = Database["public"]["Tables"]["activities"]["Row"]
 export type ActivityInsert = Database["public"]["Tables"]["activities"]["Insert"]
 export type ActivityUpdate = Database["public"]["Tables"]["activities"]["Update"]
 
+export type Product = Database["public"]["Tables"]["products"]["Row"]
+export type ProductInsert = Database["public"]["Tables"]["products"]["Insert"]
+export type ProductUpdate = Database["public"]["Tables"]["products"]["Update"]
+
+export type Task = Database["public"]["Tables"]["tasks"]["Row"]
+export type TaskInsert = Database["public"]["Tables"]["tasks"]["Insert"]
+export type TaskUpdate = Database["public"]["Tables"]["tasks"]["Update"]
+
 export type ActivityType = "note" | "call" | "email" | "meeting" | "task"
 export type DealPriority = "low" | "medium" | "high"
 export type DealStatus = "hot" | "on_track" | "at_risk" | "stalled"
+export type DealSource = "whatsapp" | "instagram" | "indicacao" | "site" | "outro"
 
 export interface DealWithRelations extends Deal {
   contact?: Contact | null
   company?: Company | null
   stage?: PipelineStage | null
+  product?: Product | null
 }
 
 export interface ContactWithCompany extends Contact {
@@ -35,6 +45,11 @@ export interface ContactWithCompany extends Contact {
 
 export interface StageWithDeals extends PipelineStage {
   deals: DealWithRelations[]
+}
+
+export interface TaskWithRelations extends Task {
+  deal?: Deal | null
+  contact?: Contact | null
 }
 
 export interface AIAnalysis {

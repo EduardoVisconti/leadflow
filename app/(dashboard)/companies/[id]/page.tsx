@@ -27,7 +27,7 @@ export default function CompanyDetailPage() {
   }
 
   if (!data) {
-    return <p className="text-muted-foreground">Company not found.</p>
+    return <p className="text-muted-foreground">Empresa não encontrada.</p>
   }
 
   const { company, contacts, deals } = data
@@ -42,7 +42,7 @@ export default function CompanyDetailPage() {
           <h1 className="text-2xl font-bold">{company.name}</h1>
           <div className="flex items-center gap-3 text-sm text-muted-foreground mt-1">
             {company.industry && <span>{company.industry}</span>}
-            {company.size && <Badge variant="secondary">{company.size} employees</Badge>}
+            {company.size && <Badge variant="secondary">{company.size} funcionários</Badge>}
             {company.website && (
               <a
                 href={company.website}
@@ -63,12 +63,12 @@ export default function CompanyDetailPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
               <Users className="h-4 w-4" />
-              Contacts ({contacts.length})
+              Contatos ({contacts.length})
             </CardTitle>
           </CardHeader>
           <CardContent>
             {!contacts.length ? (
-              <p className="text-sm text-muted-foreground">No contacts linked to this company.</p>
+              <p className="text-sm text-muted-foreground">Nenhum contato vinculado a esta empresa.</p>
             ) : (
               <div className="space-y-3">
                 {contacts.map((contact) => (
@@ -102,7 +102,7 @@ export default function CompanyDetailPage() {
           </CardHeader>
           <CardContent>
             {!deals.length ? (
-              <p className="text-sm text-muted-foreground">No deals linked to this company.</p>
+              <p className="text-sm text-muted-foreground">Nenhum deal vinculado a esta empresa.</p>
             ) : (
               <div className="space-y-3">
                 {deals.map((deal) => (

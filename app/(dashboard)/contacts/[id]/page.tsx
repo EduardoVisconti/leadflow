@@ -31,7 +31,7 @@ export default function ContactDetailPage() {
   }
 
   if (!contact) {
-    return <p className="text-muted-foreground">Contact not found.</p>
+    return <p className="text-muted-foreground">Contato não encontrado.</p>
   }
 
   return (
@@ -53,7 +53,7 @@ export default function ContactDetailPage() {
       <div className="grid gap-6 lg:grid-cols-3">
         <Card className="lg:col-span-1">
           <CardHeader>
-            <CardTitle className="text-base">Details</CardTitle>
+            <CardTitle className="text-base">Detalhes</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {contact.email && (
@@ -88,7 +88,7 @@ export default function ContactDetailPage() {
               <>
                 <Separator />
                 <div>
-                  <p className="text-xs text-muted-foreground mb-1">Notes</p>
+                  <p className="text-xs text-muted-foreground mb-1">Observações</p>
                   <p className="text-sm whitespace-pre-wrap">{contact.notes}</p>
                 </div>
               </>
@@ -106,7 +106,7 @@ export default function ContactDetailPage() {
           <CardContent>
             {!contactDeals.length ? (
               <p className="text-sm text-muted-foreground text-center py-6">
-                No deals linked to this contact.
+                Nenhum deal vinculado a este contato.
               </p>
             ) : (
               <div className="space-y-3">

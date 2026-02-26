@@ -42,9 +42,9 @@ export default function CompaniesPage() {
   async function handleDelete(id: string) {
     try {
       await deleteCompany.mutateAsync(id)
-      toast({ title: "Company deleted" })
+      toast({ title: "Empresa excluída" })
     } catch {
-      toast({ title: "Error deleting company", variant: "destructive" })
+      toast({ title: "Erro ao excluir empresa", variant: "destructive" })
     }
   }
 
@@ -52,12 +52,12 @@ export default function CompaniesPage() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Companies</h1>
-          <p className="text-muted-foreground">Manage your companies and organizations.</p>
+          <h1 className="text-2xl font-bold tracking-tight">Empresas</h1>
+          <p className="text-muted-foreground">Gerencie suas empresas e organizações.</p>
         </div>
         <Button onClick={() => setModalOpen(true)}>
           <Plus className="mr-2 h-4 w-4" />
-          New Company
+          Nova Empresa
         </Button>
       </div>
 
@@ -65,7 +65,7 @@ export default function CompaniesPage() {
         <div className="relative">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
-            placeholder="Search companies..."
+            placeholder="Buscar empresas..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="pl-9"
@@ -83,9 +83,9 @@ export default function CompaniesPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Industry</TableHead>
-                  <TableHead>Size</TableHead>
+                  <TableHead>Nome</TableHead>
+                  <TableHead>Setor</TableHead>
+                  <TableHead>Tamanho</TableHead>
                   <TableHead>Website</TableHead>
                   <TableHead className="w-[50px]" />
                 </TableRow>
@@ -94,7 +94,7 @@ export default function CompaniesPage() {
                 {!filtered?.length ? (
                   <TableRow>
                     <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
-                      {search ? "No companies match your search." : "No companies yet. Add your first one!"}
+                      {search ? "Nenhuma empresa encontrada na busca." : "Nenhuma empresa cadastrada. Adicione a primeira!"}
                     </TableCell>
                   </TableRow>
                 ) : (
@@ -136,13 +136,13 @@ export default function CompaniesPage() {
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem onClick={(e) => { e.stopPropagation(); setEditingCompany(company); setModalOpen(true) }}>
-                              <Pencil className="mr-2 h-4 w-4" /> Edit
+                              <Pencil className="mr-2 h-4 w-4" /> Editar
                             </DropdownMenuItem>
                             <DropdownMenuItem
                               className="text-destructive"
                               onClick={(e) => { e.stopPropagation(); handleDelete(company.id) }}
                             >
-                              <Trash2 className="mr-2 h-4 w-4" /> Delete
+                              <Trash2 className="mr-2 h-4 w-4" /> Excluir
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>

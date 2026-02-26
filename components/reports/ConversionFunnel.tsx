@@ -16,7 +16,7 @@ export function ConversionFunnel({ stages }: ConversionFunnelProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-base">Conversion Funnel</CardTitle>
+        <CardTitle className="text-base">Funil de Conversão</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-3">

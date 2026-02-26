@@ -30,19 +30,19 @@ export default function ContactsPage() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Contacts</h1>
-          <p className="text-muted-foreground">Manage your contacts and relationships.</p>
+          <h1 className="text-2xl font-bold tracking-tight">Contatos</h1>
+          <p className="text-muted-foreground">Gerencie seus contatos e relacionamentos.</p>
         </div>
         <div className="flex gap-2">
           {contacts && contacts.length > 0 && (
             <Button variant="outline" onClick={() => exportContactsToCSV(contacts)}>
               <Download className="mr-2 h-4 w-4" />
-              Export CSV
+              Exportar CSV
             </Button>
           )}
           <Button onClick={() => setModalOpen(true)}>
             <Plus className="mr-2 h-4 w-4" />
-            New Contact
+            Novo Contato
           </Button>
         </div>
       </div>

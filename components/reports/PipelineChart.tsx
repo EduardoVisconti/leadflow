@@ -19,7 +19,7 @@ export function PipelineChart({ stages }: PipelineChartProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-base">Pipeline Value by Stage</CardTitle>
+        <CardTitle className="text-base">Valor do Pipeline por Estágio</CardTitle>
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={300}>
@@ -29,7 +29,7 @@ export function PipelineChart({ stages }: PipelineChartProps) {
             <YAxis className="text-xs" tick={{ fontSize: 12 }} />
             <Tooltip
               formatter={(value: number) =>
-                new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0 }).format(value)
+                new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", minimumFractionDigits: 0 }).format(value)
               }
               contentStyle={{ borderRadius: 8, border: "1px solid hsl(var(--border))" }}
             />

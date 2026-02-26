@@ -39,7 +39,7 @@ export function DealDetail({ deal }: DealDetailProps) {
                 </Badge>
               )}
               {overdue && (
-                <Badge variant="destructive">Overdue</Badge>
+                <Badge variant="destructive">Atrasado</Badge>
               )}
             </div>
           </div>
@@ -53,21 +53,21 @@ export function DealDetail({ deal }: DealDetailProps) {
           <div className="flex items-center gap-2 text-muted-foreground">
             <Calendar className="h-4 w-4 shrink-0" />
             <div>
-              <p className="text-xs text-muted-foreground">Expected Close</p>
+              <p className="text-xs text-muted-foreground">Fechamento Previsto</p>
               <p className="font-medium text-foreground">{formatDate(deal.expected_close_date)}</p>
             </div>
           </div>
           <div className="flex items-center gap-2 text-muted-foreground">
             <Clock className="h-4 w-4 shrink-0" />
             <div>
-              <p className="text-xs text-muted-foreground">Created</p>
+              <p className="text-xs text-muted-foreground">Criado em</p>
               <p className="font-medium text-foreground">{timeAgo(deal.created_at)}</p>
             </div>
           </div>
           <div className="flex items-center gap-2 text-muted-foreground">
             <DollarSign className="h-4 w-4 shrink-0" />
             <div>
-              <p className="text-xs text-muted-foreground">Currency</p>
+              <p className="text-xs text-muted-foreground">Moeda</p>
               <p className="font-medium text-foreground">{deal.currency}</p>
             </div>
           </div>
@@ -79,7 +79,7 @@ export function DealDetail({ deal }: DealDetailProps) {
           <div className="flex items-center gap-3">
             <User className="h-4 w-4 text-muted-foreground shrink-0" />
             <div>
-              <p className="text-xs text-muted-foreground">Contact</p>
+              <p className="text-xs text-muted-foreground">Contato</p>
               <Link href={`/contacts/${deal.contact.id}`} className="text-sm font-medium text-primary hover:underline">
                 {deal.contact.first_name} {deal.contact.last_name}
               </Link>
@@ -91,7 +91,7 @@ export function DealDetail({ deal }: DealDetailProps) {
           <div className="flex items-center gap-3">
             <Building2 className="h-4 w-4 text-muted-foreground shrink-0" />
             <div>
-              <p className="text-xs text-muted-foreground">Company</p>
+              <p className="text-xs text-muted-foreground">Empresa</p>
               <Link href={`/companies/${deal.company.id}`} className="text-sm font-medium text-primary hover:underline">
                 {deal.company.name}
               </Link>
@@ -103,7 +103,7 @@ export function DealDetail({ deal }: DealDetailProps) {
           <>
             <Separator />
             <div>
-              <p className="text-xs text-muted-foreground mb-1">Notes</p>
+              <p className="text-xs text-muted-foreground mb-1">Observações</p>
               <p className="text-sm whitespace-pre-wrap">{deal.notes}</p>
             </div>
           </>

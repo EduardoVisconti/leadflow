@@ -51,11 +51,11 @@ export default function DealsPage() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Deals</h1>
-          <p className="text-muted-foreground">All your deals in one place.</p>
+          <p className="text-muted-foreground">Todos os seus deals em um só lugar.</p>
         </div>
         <Button onClick={() => setModalOpen(true)}>
           <Plus className="mr-2 h-4 w-4" />
-          New Deal
+          Novo Deal
         </Button>
       </div>
 
@@ -63,7 +63,7 @@ export default function DealsPage() {
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
-            placeholder="Search deals..."
+            placeholder="Buscar deals..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="pl-9"
@@ -74,7 +74,7 @@ export default function DealsPage() {
             <SelectValue placeholder="Stage" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Stages</SelectItem>
+            <SelectItem value="all">Todos os Estágios</SelectItem>
             {stages?.map((stage) => (
               <SelectItem key={stage.id} value={stage.id}>{stage.name}</SelectItem>
             ))}
@@ -86,9 +86,9 @@ export default function DealsPage() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
-            <SelectItem value="high">High</SelectItem>
-            <SelectItem value="medium">Medium</SelectItem>
-            <SelectItem value="low">Low</SelectItem>
+            <SelectItem value="high">Alta</SelectItem>
+            <SelectItem value="medium">Média</SelectItem>
+            <SelectItem value="low">Baixa</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -104,19 +104,19 @@ export default function DealsPage() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Title</TableHead>
-                <TableHead>Value</TableHead>
-                <TableHead>Stage</TableHead>
-                <TableHead>Priority</TableHead>
-                <TableHead>Contact</TableHead>
-                <TableHead>Close Date</TableHead>
+                <TableHead>Título</TableHead>
+                <TableHead>Valor</TableHead>
+                <TableHead>Estágio</TableHead>
+                <TableHead>Prioridade</TableHead>
+                <TableHead>Contato</TableHead>
+                <TableHead>Fechamento</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {!filtered?.length ? (
                 <TableRow>
                   <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
-                    No deals found.
+                    Nenhum deal encontrado.
                   </TableCell>
                 </TableRow>
               ) : (

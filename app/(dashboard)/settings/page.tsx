@@ -22,19 +22,19 @@ export default function SettingsPage() {
   return (
     <div className="max-w-2xl">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight">Settings</h1>
-        <p className="text-muted-foreground">Manage your preferences.</p>
+        <h1 className="text-2xl font-bold tracking-tight">Configurações</h1>
+        <p className="text-muted-foreground">Gerencie suas preferências.</p>
       </div>
 
       <div className="space-y-6">
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Appearance</CardTitle>
-            <CardDescription>Customize how LeadFlow looks.</CardDescription>
+            <CardTitle className="text-base">Aparência</CardTitle>
+            <CardDescription>Personalize a aparência do LeadFlow.</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
-              <Label>Theme</Label>
+              <Label>Tema</Label>
               <Select value={theme} onValueChange={setTheme}>
                 <SelectTrigger className="w-[200px]">
                   <SelectValue />
@@ -42,17 +42,17 @@ export default function SettingsPage() {
                 <SelectContent>
                   <SelectItem value="light">
                     <div className="flex items-center gap-2">
-                      <Sun className="h-4 w-4" /> Light
+                      <Sun className="h-4 w-4" /> Claro
                     </div>
                   </SelectItem>
                   <SelectItem value="dark">
                     <div className="flex items-center gap-2">
-                      <Moon className="h-4 w-4" /> Dark
+                      <Moon className="h-4 w-4" /> Escuro
                     </div>
                   </SelectItem>
                   <SelectItem value="system">
                     <div className="flex items-center gap-2">
-                      <Monitor className="h-4 w-4" /> System
+                      <Monitor className="h-4 w-4" /> Sistema
                     </div>
                   </SelectItem>
                 </SelectContent>
@@ -63,8 +63,8 @@ export default function SettingsPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Pipeline Stages</CardTitle>
-            <CardDescription>Your current pipeline configuration.</CardDescription>
+            <CardTitle className="text-base">Estágios do Pipeline</CardTitle>
+            <CardDescription>Configuração atual do seu pipeline.</CardDescription>
           </CardHeader>
           <CardContent>
             {stages?.map((stage) => (
@@ -75,7 +75,7 @@ export default function SettingsPage() {
                 />
                 <span className="text-sm font-medium">{stage.name}</span>
                 <span className="text-xs text-muted-foreground ml-auto">
-                  Position {stage.position}
+                  Posição {stage.position}
                 </span>
               </div>
             ))}
@@ -84,15 +84,15 @@ export default function SettingsPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Keyboard Shortcuts</CardTitle>
-            <CardDescription>Quick actions to boost your productivity.</CardDescription>
+            <CardTitle className="text-base">Atalhos de Teclado</CardTitle>
+            <CardDescription>Ações rápidas para aumentar sua produtividade.</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
               {[
-                { keys: "Ctrl + K", action: "Open global search" },
-                { keys: "F", action: "Focus search (when not typing)" },
-                { keys: "N", action: "New deal (on Pipeline page)" },
+                { keys: "Ctrl + K", action: "Abrir busca global" },
+                { keys: "F", action: "Focar busca (quando não estiver digitando)" },
+                { keys: "N", action: "Novo deal (na página Pipeline)" },
               ].map(({ keys, action }) => (
                 <div key={keys} className="flex items-center justify-between">
                   <span className="text-sm text-muted-foreground">{action}</span>
@@ -109,11 +109,11 @@ export default function SettingsPage() {
 
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-destructive">Danger Zone</p>
-            <p className="text-xs text-muted-foreground">This action cannot be undone.</p>
+            <p className="text-sm font-medium text-destructive">Zona de Perigo</p>
+            <p className="text-xs text-muted-foreground">Esta ação não pode ser desfeita.</p>
           </div>
           <Button variant="destructive" size="sm" disabled>
-            Delete Account
+            Excluir Conta
           </Button>
         </div>
       </div>

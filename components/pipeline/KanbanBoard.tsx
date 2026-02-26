@@ -109,7 +109,7 @@ export function KanbanBoard({ onAddDeal, onDealClick }: KanbanBoardProps) {
   if (!stages?.length) {
     return (
       <div className="flex items-center justify-center h-[400px] text-muted-foreground">
-        <p>No pipeline stages found. Check your Supabase setup.</p>
+        <p>Nenhum estágio do pipeline encontrado. Verifique sua configuração do Supabase.</p>
       </div>
     )
   }

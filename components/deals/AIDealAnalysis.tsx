@@ -12,10 +12,10 @@ import { useActivities } from "@/lib/hooks/useActivities"
 import type { DealWithRelations, AIAnalysis } from "@/types"
 
 const statusConfig = {
-  hot: { label: "Hot", class: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300" },
-  on_track: { label: "On Track", class: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300" },
-  at_risk: { label: "At Risk", class: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300" },
-  stalled: { label: "Stalled", class: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300" },
+  hot: { label: "Quente", class: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300" },
+  on_track: { label: "No Caminho", class: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300" },
+  at_risk: { label: "Em Risco", class: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300" },
+  stalled: { label: "Parado", class: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300" },
 }
 
 interface AIDealAnalysisProps {
@@ -55,7 +55,7 @@ export function AIDealAnalysis({ deal }: AIDealAnalysisProps) {
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="flex items-center gap-2 text-base">
           <Sparkles className="h-4 w-4 text-primary" />
-          AI Analysis
+          Análise IA
         </CardTitle>
         <Button
           size="sm"
@@ -64,7 +64,7 @@ export function AIDealAnalysis({ deal }: AIDealAnalysisProps) {
           disabled={analyze.isPending}
         >
           <RefreshCw className={`mr-1 h-3 w-3 ${analyze.isPending ? "animate-spin" : ""}`} />
-          {analysis ? "Refresh" : "Analyze"}
+          {analysis ? "Atualizar" : "Analisar"}
         </Button>
       </CardHeader>
       <CardContent>
@@ -78,7 +78,7 @@ export function AIDealAnalysis({ deal }: AIDealAnalysisProps) {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs text-muted-foreground">Health Score</p>
+                <p className="text-xs text-muted-foreground">Score de Saúde</p>
                 <p className="text-3xl font-bold">{analysis.score}</p>
               </div>
               {status && (
@@ -96,13 +96,13 @@ export function AIDealAnalysis({ deal }: AIDealAnalysisProps) {
               <p className="text-sm">{analysis.insight}</p>
             </div>
             <div>
-              <p className="text-xs text-muted-foreground mb-1">Suggested Next Action</p>
+              <p className="text-xs text-muted-foreground mb-1">Próxima Ação Sugerida</p>
               <p className="text-sm font-medium">{analysis.next_action}</p>
             </div>
           </div>
         ) : (
           <p className="text-sm text-muted-foreground text-center py-6">
-            Click &quot;Analyze&quot; to get AI-powered insights on this deal.
+            Clique em &quot;Analisar&quot; para obter insights com IA sobre este deal.
           </p>
         )}
       </CardContent>

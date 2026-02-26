@@ -31,12 +31,12 @@ export function RevenueChart({ deals }: RevenueChartProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-base">Revenue Over Time</CardTitle>
+        <CardTitle className="text-base">Receita ao Longo do Tempo</CardTitle>
       </CardHeader>
       <CardContent>
         {data.length === 0 ? (
           <p className="text-sm text-muted-foreground text-center py-8">
-            No revenue data yet. Close some deals to see trends.
+            Nenhum dado de receita ainda. Feche alguns deals para ver tendências.
           </p>
         ) : (
           <ResponsiveContainer width="100%" height={300}>
@@ -46,7 +46,7 @@ export function RevenueChart({ deals }: RevenueChartProps) {
               <YAxis className="text-xs" tick={{ fontSize: 12 }} />
               <Tooltip
                 formatter={(value: number) =>
-                  new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0 }).format(value)
+                  new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", minimumFractionDigits: 0 }).format(value)
                 }
                 contentStyle={{ borderRadius: 8, border: "1px solid hsl(var(--border))" }}
               />

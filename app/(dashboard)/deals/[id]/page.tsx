@@ -20,10 +20,10 @@ export default function DealDetailPage() {
   async function handleDelete() {
     try {
       await deleteDeal.mutateAsync(id)
-      toast({ title: "Deal deleted" })
+      toast({ title: "Deal excluído" })
       router.push("/pipeline")
     } catch {
-      toast({ title: "Error deleting deal", variant: "destructive" })
+      toast({ title: "Erro ao excluir deal", variant: "destructive" })
     }
   }
 
@@ -37,7 +37,7 @@ export default function DealDetailPage() {
   }
 
   if (!deal) {
-    return <p className="text-muted-foreground">Deal not found.</p>
+    return <p className="text-muted-foreground">Deal não encontrado.</p>
   }
 
   return (
@@ -45,11 +45,11 @@ export default function DealDetailPage() {
       <div className="flex items-center justify-between">
         <Button variant="ghost" onClick={() => router.back()}>
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back
+          Voltar
         </Button>
         <Button variant="destructive" size="sm" onClick={handleDelete}>
           <Trash2 className="mr-2 h-4 w-4" />
-          Delete Deal
+          Excluir Deal
         </Button>
       </div>
 
