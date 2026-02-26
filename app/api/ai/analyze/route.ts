@@ -1,12 +1,8 @@
 import { GoogleGenerativeAI } from "@google/generative-ai"
 import { NextResponse } from "next/server"
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
-
 export async function POST(req: Request) {
   try {
-    const { deal } = await req.json()
-
     if (!process.env.GEMINI_API_KEY) {
       return NextResponse.json(
         { error: "GEMINI_API_KEY not configured" },
@@ -14,6 +10,8 @@ export async function POST(req: Request) {
       )
     }
 
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
+    const { deal } = await req.json()
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
 
     const prompt = `
@@ -37,17 +35,16 @@ Respond with exactly this JSON structure:
   "next_action": <specific recommended next step>
 }
 `
-
     const result = await model.generateContent(prompt)
     const text = result.response.text()
-
     const cleaned = text.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim()
     const parsed = JSON.parse(cleaned)
 
     return NextResponse.json(parsed)
   } catch (error) {
+    console.error("AI analyze error:", error)
     return NextResponse.json(
-      { error: "Failed to analyze deal" },
+      { error: error instanceof Error ? error.message : "Failed to analyze deal" },
       { status: 500 }
     )
   }
