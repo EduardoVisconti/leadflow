@@ -23,6 +23,11 @@ export function useAIAnalysis() {
         body: JSON.stringify({ deal: input }),
       })
 
+      if (response.status === 401) {
+        // Session ended while the page was open.
+        window.location.href = "/login"
+      }
+
       if (!response.ok) {
         throw new Error("Failed to analyze deal")
       }
