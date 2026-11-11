@@ -1,5 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai"
 import { NextResponse } from "next/server"
+import { createClient } from "@/lib/supabase/server"
 
 const DEFAULT_GEMINI_MODELS = ["gemini-2.5-flash", "gemini-2.0-flash"] as const
 
@@ -12,6 +13,16 @@ const MODEL_UNAVAILABLE_PATTERNS = [
 
 export async function POST(req: Request) {
   try {
+    // The middleware matcher skips /api, so this route has to check the session itself.
+    const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
     if (!process.env.GEMINI_API_KEY) {
       return NextResponse.json(
         { error: "GEMINI_API_KEY not configured" },

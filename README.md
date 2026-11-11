@@ -197,13 +197,10 @@ npm run dev
 
 **[leadflow-electronics.vercel.app](https://leadflow-electronics.vercel.app)**
 
-```
-Email:    duduhsg@gmail.com
-Password: 123456
-```
+Create an account on the sign-up page to try it. Each account only sees its own data.
 
 ---
 
 ## License
 
-MIT
+[MIT](LICENSE)
