@@ -1,12 +1,6 @@
 <div align="center">
   <h1>LeadFlow CRM</h1>
-  <p>A lightweight CRM built for small sales teams — specifically electronics resellers who manage leads through WhatsApp and Instagram.</p>
-
-  <p>
-    <a href="https://leadflow-electronics.vercel.app">
-      <img src="https://img.shields.io/badge/Live%20Demo-leadflow--electronics.vercel.app-0070f3?style=for-the-badge&logo=vercel" alt="Live Demo" />
-    </a>
-  </p>
+  <p>A lightweight CRM built for small sales teams, specifically electronics resellers who manage leads through WhatsApp and Instagram.</p>
 
   <p>
     <img src="https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js" />
@@ -14,7 +8,6 @@
     <img src="https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?style=flat-square&logo=supabase" />
     <img src="https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=flat-square&logo=tailwindcss" />
     <img src="https://img.shields.io/badge/Google-Gemini-4285F4?style=flat-square&logo=google" />
-    <img src="https://img.shields.io/badge/Vercel-Deployed-000000?style=flat-square&logo=vercel" />
   </p>
 </div>
 
@@ -32,22 +25,22 @@ Small businesses lose deals because follow-ups fall through the cracks. Spreadsh
 Drag-and-drop Kanban board across fully customizable stages. Each deal card shows value, contact, product of interest, origin channel (WhatsApp / Instagram / Referral), and a warning if the deal has gone silent for 7+ days.
 
 ### 💼 Deals
-Full deal management with origin channel tracking, product of interest, priority levels, expected close date, and a complete activity history — calls, emails, meetings, notes, and tasks logged per deal.
+Full deal management with origin channel tracking, product of interest, priority levels, expected close date, and a complete activity history: calls, emails, meetings, notes, and tasks logged per deal.
 
 ### 👤 Contacts & 🏢 Companies
 Contact database with channel preference (WhatsApp, Instagram, Phone, Email), Instagram handle, and WhatsApp number fields. Company profiles with linked contacts and open deals.
 
 ### 📱 Product Catalog
-Manage your inventory — brand, category, price, and stock levels. Stock badges: 🟢 green (>5), 🟡 yellow (1–5), 🔴 red (out of stock). Link any product to a deal as "product of interest."
+Manage your inventory: brand, category, price, and stock levels. Stock badges: 🟢 green (>5), 🟡 yellow (1 to 5), 🔴 red (out of stock). Link any product to a deal as "product of interest."
 
 ### ✅ Tasks
 Task list with due dates, priority levels, and a completion toggle. Overdue and Due Today badges so nothing falls through the cracks.
 
 ### 🤖 AI Deal Analysis
 Powered by **Google Gemini**. Click "Analyze" on any deal and get:
-- A health **score** (0–100)
+- A health **score** (0 to 100)
 - A **status** label: Hot 🔥, On Track ✅, At Risk ⚠️, or Stalled 🧊
-- A 2–3 sentence **insight** in Portuguese
+- A 2 to 3 sentence **insight** in Portuguese
 - A specific **next action** recommendation
 
 ### 📈 Dashboard & Reports
@@ -61,7 +54,7 @@ Powered by **Google Gemini**. Click "Analyze" on any deal and get:
 
 ### ✨ UX Details
 - Dark / light mode
-- Global Spotlight search — `Ctrl+K`
+- Global Spotlight search: `Ctrl+K`
 - Export contacts to CSV
 - Mobile responsive with collapsible sidebar
 - Full PT-BR interface
@@ -76,7 +69,7 @@ Powered by **Google Gemini**. Click "Analyze" on any deal and get:
 | Language | TypeScript |
 | Styling | Tailwind CSS + shadcn/ui |
 | Database | Supabase (PostgreSQL) |
-| Auth | Supabase Auth — email/password + Google OAuth |
+| Auth | Supabase Auth: email/password and Google OAuth |
 | Server State | TanStack Query (React Query) |
 | Forms | React Hook Form + Zod |
 | Drag & Drop | @dnd-kit/core + @dnd-kit/sortable |
@@ -102,7 +95,7 @@ auth.users  (Supabase Auth)
     └── tasks            id · user_id · deal_id · contact_id · title · due_date · done · priority
 ```
 
-All tables use **Row Level Security (RLS)** — users can only access their own data.
+All tables use **Row Level Security (RLS)**: users can only access their own data.
 
 A SQL trigger auto-creates 6 default pipeline stages when a new user registers.
 
@@ -176,7 +169,7 @@ SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 GEMINI_API_KEY=your_gemini_api_key
 ```
 
-Run migrations in your Supabase SQL Editor — in order:
+Run migrations in your Supabase SQL Editor, in order:
 1. `supabase/migrations/001_initial_schema.sql`
 2. `supabase/migrations/002_products_tasks.sql`
 
@@ -193,11 +186,11 @@ npm run dev
 
 ---
 
-## Demo
+## Screenshot
 
-**[leadflow-electronics.vercel.app](https://leadflow-electronics.vercel.app)**
+![LeadFlow dashboard: pipeline figures, recent deals and today's tasks](docs/dashboard.jpg)
 
-Create an account on the sign-up page to try it. Each account only sees its own data.
+To run it yourself, follow Getting Started with your own Supabase project and Gemini key.
 
 ---
 
